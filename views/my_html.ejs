@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            
+            background: #000 center/cover url("./imgs/new.png") no-repeat;
+            width: 80%;
+            margin: 0 auto;
+        }
+        label{
+            font-size: larger;
+            color: #fff;
+        }
+        input:nth-of-type("file"){
+            font-size: larger;
+            color: #fff;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        input[type=email] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        input[type=file] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            color: #fff;
+        }
+        input[type=submit] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            color: #9af;
+            border: 0;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>this is my page</h1>
+    <!-- <img src=".//imgs/new.png" alt="why cant see this shit"> -->
+
+    <form action="/post/user" method="post">
+        <label for="user">User Name</label>
+        <input type="text" name="user" id="user">
+        <label for="email">Eamil</label>
+        <input type="email" name="email" id="email">
+        <hr>
+        <label for="pic">upload your image</label>
+        <input type="file" name="pic" id="pic">
+        <input type="submit" value="Submit">
+    </form>
+    
+</body>
+</html>
