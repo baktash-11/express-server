@@ -21,8 +21,13 @@ app.get('/', (req, res)=>{
 
 app.post('/post/user', (req, res)=>{
     console.log(req.body);
-    User.create(req.body);
-    res.redirect('/');
+    // User.create(req.body);
+    let img = req.files.pic;
+    img.mv(path.resolve(__dirname, 'public/imgs', img.name = 'profile.png'), async(error)=>{
+        await User.create({...req.body, pic:'/img'+ img.name});
+        
+        res.redirect('/');
+    });
     // res.sendFile(path.resolve(__dirname, './views/my_html.html'))
 });
 app.listen(3000);
