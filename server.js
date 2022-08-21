@@ -1,33 +1,52 @@
-const express = require('express');
-const path = require ('path');
-const mongoose = require('mongoose');
-const fileUpolad = require('express-fileupload');
-const User = require('./models/User');
+//a fresh start at server
 
-// mongoose.connect('mongodb://localhost/my_database',{useNewUrlParser:true});
+const path = require('path');
+const express = require ('express');
+const fileUpolad = require('express-fileupload');
+const user = require('./models/User');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/my_database',{useNewUrlParser:true});
 
+
 const app = express();
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+
+app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(fileUpolad());
-app.get('/', (req, res)=>{
-    // res.sendFile(path.resolve(__dirname, './views/my_html.html'))
-    res.render('my_html')
-});
 
 
-app.post('/post/user', (req, res)=>{
-    console.log(req.body);
-    // User.create(req.body);
-    let img = req.files.pic;
-    img.mv(path.resolve(__dirname, 'public/imgs', img.name = 'profile.png'), async(error)=>{
-        await User.create({...req.body, pic:'/img'+ img.name});
+app.set('view engine', 'ejs');
+app.get('/',(req, res)=>{
+    res.send('<a href="/doc">lets get in</a>');
+}); 
+app.get('/doc', (req, res)=>{
+    res.render('my_html');
+})
+
+// app.post('/post/user', (req, res)=>{
+//     let image = req.files.pic;
+//     image.mv(path.resolve(__dirname,'./public/imgs',image.name='profile.png'), async(error )=>{
+//         await console.log(req.body);
+//         // console.log(req.files);
+//         // user.create(req.body);
+
+//     })
+//     res.redirect('/');
+// })
+
+
+
+
+
+app.post('/post/user', function(req, res){
+    let image = req.files.pic;
+    image.mv (path.resolve(__dirname, './public/imgs', image.name='profile.png'), async(error)=>{
+        await user.create({... req.body,image:'/imgs/'+image.name});
         
-        res.redirect('/');
+        res.redirect('/doc');
     });
-    // res.sendFile(path.resolve(__dirname, './views/my_html.html'))
 });
-app.listen(3000);
+app.listen(3000, ()=>{
+    console.log(`http://localhost:3000`);
+});

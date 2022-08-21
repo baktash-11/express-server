@@ -49,17 +49,22 @@
             font-size: 1.5rem;
             background-color: aquamarine;
         }
+        #profile{
+            border-radius: 50%;
+            box-shadow: 2px 2px 4px #444;
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
     <h1>this is my page</h1>
     <!-- <img src=".//imgs/new.png" alt="why cant see this shit"> -->
-    <img src="../imgs/profile.png" alt="profile" width="400px">
+    <img src="../imgs/profile.png" alt="profile" width="400px" id="profile">
 
     <form action="/post/user" method="post" enctype="multipart/form-data">
         <label for="user">User Name</label>
         <input type="text" name="user" id="user">
-        <label for="email">Eamil</label>
+        <label for="email">Email</label>
         <input type="email" name="email" id="email">
         <hr>
         <label for="pic">upload your image</label>
